@@ -1,0 +1,66 @@
+TABLEs DDLs:
+
+
+------------------------------------------------------------------------------------------------------------------------------------
+PROPERTIES Table:
+
+CREATE TABLE public.properties (
+	id serial4 NOT NULL,
+	user_id int4 NOT NULL,
+	title varchar(255) NOT NULL,
+	description text NULL,
+	city varchar(255) NOT NULL,
+	address varchar(255) NOT NULL,
+	area float8 NOT NULL,
+	bedrooms int4 NOT NULL,
+	bathrooms int4 NOT NULL,
+	price float8 NOT NULL,
+	state varchar(255) NOT NULL,
+	property_type varchar(255) NOT NULL,
+	furnishing_status varchar(255) NOT NULL,
+	balconies int4 NOT NULL,
+	pincode varchar(255) NOT NULL,
+	CONSTRAINT properties_pkey PRIMARY KEY (id)
+);
+
+
+-- public.properties foreign keys
+
+ALTER TABLE public.properties ADD CONSTRAINT properties_user_id_fkey
+FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE CASCADE;
+
+------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------
+property_images Table:
+
+CREATE TABLE public.property_images (
+	id serial4 NOT NULL,
+	property_id int4 NOT NULL,
+	image_url varchar(255) NOT NULL,
+	is_main_image bool NULL,
+	CONSTRAINT property_images_pkey PRIMARY KEY (id)
+);
+
+
+-- public.property_images foreign keys
+
+ALTER TABLE public.property_images ADD CONSTRAINT property_images_property_id_fkey
+FOREIGN KEY (property_id) REFERENCES public.properties(id);
+
+------------------------------------------------------------------------------------------------------------------------------------
+users Table:
+
+CREATE TABLE public.users (
+	id serial4 NOT NULL,
+	"name" varchar NULL,
+	email varchar NOT NULL,
+	"password" varchar NOT NULL,
+	CONSTRAINT users_email_key UNIQUE (email),
+	CONSTRAINT users_pkey PRIMARY KEY (id)
+);
+CREATE INDEX ix_users_id ON public.users USING btree (id);
+
+------------------------------------------------------------------------------------------------------------------------------------
