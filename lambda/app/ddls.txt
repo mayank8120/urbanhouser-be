@@ -64,3 +64,19 @@ CREATE TABLE public.users (
 CREATE INDEX ix_users_id ON public.users USING btree (id);
 
 ------------------------------------------------------------------------------------------------------------------------------------
+
+dependencies :
+
+boto3==1.26.158
+fastapi==0.97.0
+mangum==0.17.0
+psycopg2-binary==2.9.6
+SQLAlchemy==2.0.16
+sqlalchemy-json==0.5.0
+uvicorn==0.22.0
+python-multipart==0.0.6
+packaging>=21.0
+PyPDF2==3.0.1
+pycryptodome==3.19.0
+requests==2.32.3
+pytz==2024.2
